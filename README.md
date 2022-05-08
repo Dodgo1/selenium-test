@@ -1,2 +1,2 @@
 # selenium-test
-Projekt/ćwiczenie wykorzystujący selenium
+Projekt/ćwiczenie wykorzystujący selenium do przetestowania strony PWSZ
