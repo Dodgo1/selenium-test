@@ -1,5 +1,7 @@
+.idea/
 .wdm/
 test-selenium-raport.xml
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
