@@ -5,17 +5,9 @@ Projekt/ćwiczenie wykorzystujący selenium do przetestowania strony PWSZ
 Wykorzystuje model
 POM:
 
-<style>
-ul.no-bullets {
-  list-style-type: none;
-}
-</style>
-
-<ul class="no-bullets">
-<li>P - Page   </li>
-<li>O - Object </li>
-<li>M - Model  </li>
-</ul>
+* P - Page
+* O - Object
+* M - Model
 
 Testuje stronę *https://pwsz.edu.pl*
 a także częsciowo jej podstrony
