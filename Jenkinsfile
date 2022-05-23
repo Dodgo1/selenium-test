@@ -26,10 +26,7 @@ pipeline{
                 stage("run test"){
                     steps{
                         sh """
-                        test=$(pipenv run pytest --headless)
-                        if [$test == 1]
-                        then
-                            echo "0"
+                        pipenv run pytest --headless
                         """
                     }
                 }
