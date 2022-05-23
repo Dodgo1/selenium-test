@@ -15,11 +15,13 @@ pipeline{
                 }
             }
             stages{
-                script{
-                    try{
-                        sh "exit 1"
-                    } catch (err) {
-                       catchError(message: "Some test failed", buildResult: 'UNSTABLE', stageResult: 'UNSTABLE')
+                stage("try and catch"){
+                    script{
+                        try{
+                            sh "exit 1"
+                        } catch (err) {
+                           catchError(message: "Some test failed", buildResult: 'UNSTABLE', stageResult: 'UNSTABLE')
+                        }
                     }
                 }
             }
