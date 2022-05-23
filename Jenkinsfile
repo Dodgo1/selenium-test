@@ -18,7 +18,7 @@ pipeline{
                 stage("try and catch"){
                     steps{
                         script{
-                            catchError(message: "Some test failed", buildResult: 'UNSTABLE', stageResult: 'UNSTABLE'){
+                            warnError(message: "Some test failed", buildResult: 'UNSTABLE', stageResult: 'UNSTABLE'){
                                 sh "false"
                             }
                         }
