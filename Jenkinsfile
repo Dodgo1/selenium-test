@@ -26,7 +26,7 @@ pipeline{
                 stage("run test"){
                     steps{
                         sh """
-                        pytest --headless
+                        pipenv run pytest --headless
                         """
                     }
                 }
