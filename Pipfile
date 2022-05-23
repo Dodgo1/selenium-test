@@ -7,6 +7,8 @@ name = "pypi"
 selenium = "*"
 webdriver-manager = "*"
 pytest = "*"
+beautifulsoup4 = "*"
+pytest-xdist = "*"
 
 [dev-packages]
 pylint = "*"

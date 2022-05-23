@@ -1,15 +1,13 @@
 """tests for main page"""
 import pytest
 
-from functions import MainPageFunctions
-from locators import MainPageLocators as MPL
+from pages.main.functions import MainPageFunctions
+from pages.main.locators import MainPageLocators as MPL
 
 
-# browser included in conftest.py
+# browser fixture included in conftest.py
 
 # how to get rid of MainPageLocators class when defining?
-# TODO: - check if page contains text
-#       - parametrize TestTabs
 class TestTabs:
     """tests associated with tabs and their links to another pages located in menus"""
 
@@ -24,42 +22,32 @@ class TestTabs:
 
         assert university_name in start_title
         assert start_title == new_title
+        assert "error" not in home_page.page_content()
 
     @staticmethod
-    def test_about_history(browser):
-        """test for 'About'->'history of the university'"""
+    @pytest.mark.parametrize(
+        "tab,menu_tab", [
+            (MPL.about_tab, MPL.AboutMenu.history),
+            (MPL.about_tab, MPL.AboutMenu.patron),
+            (MPL.about_tab, MPL.AboutMenu.career),
+            (MPL.about_tab, MPL.AboutMenu.fundation),  # fundation page has no title :(
+            (MPL.about_tab, MPL.AboutMenu.news),
+            (MPL.students_tab, MPL.StudentsMenu.student_card),
+            (MPL.students_tab, MPL.StudentsMenu.update_info),
+            (MPL.students_tab, MPL.StudentsMenu.ios),
+            (MPL.candidates_tab, MPL.CandidatesMenu.offer),
+        ])
+    def test_tab_menu_redirect(tab, menu_tab, browser):
+        """test for 'tab'->'menu_tab'"""
         home_page = MainPageFunctions(browser)
         start_title = home_page.title()
-        home_page.go_to(MPL.about_tab)
-        home_page.go_to(MPL.AboutMenu.history)
+        home_page.go_to(tab)
+        home_page.go_to(menu_tab)
         new_title = home_page.title()
         # MPL.*[1] = name of the clicked link - move to constants?
-        assert MPL.AboutMenu.history[1] == home_page.title()
+        assert menu_tab[1] == home_page.title()
         assert start_title != new_title
-
-    @staticmethod
-    def test_students_student_card(browser):
-        """test for 'Student'->'student card'"""
-        home_page = MainPageFunctions(browser)
-        start_title = home_page.title()
-        home_page.go_to(MPL.students_tab)
-        home_page.go_to(MPL.StudentsMenu.student_card)
-        new_title = home_page.title()
-        # MPL.*[1] = name of the clicked link - move to constants?
-        assert MPL.StudentsMenu.student_card[1] == home_page.title()
-        assert start_title != new_title
-
-    @staticmethod
-    def test_candidates_offer(browser):
-        """test for 'Candidates'->'offer'"""
-        home_page = MainPageFunctions(browser)
-        start_title = home_page.title()
-        home_page.go_to(MPL.candidates_tab)
-        home_page.go_to(MPL.CandidatesMenu.offer)
-        new_title = home_page.title()
-        # MPL.*[1] = name of the clicked link - move to constants?
-        assert MPL.CandidatesMenu.offer[1] == home_page.title()
-        assert start_title != new_title
+        assert "error" not in home_page.page_content()
 
     @staticmethod
     def test_institutes_polytechnic(browser):
@@ -71,6 +59,7 @@ class TestTabs:
         new_title = home_page.title()
         assert "Instytut Politechniczny PWSZ Leszno" == home_page.title()
         assert start_title != new_title
+        assert "error" not in home_page.page_content()
 
     @staticmethod
     def test_library_alert_and_redirect(browser):
@@ -82,6 +71,7 @@ class TestTabs:
         new_title = home_page.title()
         assert home_title != new_title
         assert "Biblioteka" in new_title
+        assert "error" not in home_page.page_content()
         # rest of library tests in pages/library
 
 
@@ -100,9 +90,29 @@ class TestDropdownMenus:
             (MPL.contact_tab, MPL.ContactMenu.dropdown_menu)
         ])
     def test_dropdown_menus_visibility(tab, menu, browser):
+        """test for checking visibilities of the menus"""
         home_page = MainPageFunctions(browser)
         # roll down the menu
         home_page.go_to(tab)
         # check visibility
         menu = home_page.check_visbility(menu)
         assert menu
+
+
+class TestLangChange:
+    """test linked to change of the language"""
+
+    @staticmethod
+    def test_change_lang_to_english(browser):
+        """change lang to english and test content"""
+        home_page = MainPageFunctions(browser)
+        title_pl = home_page.title()
+        content_pl = home_page.page_content()
+        main_eng_link = 'State School of Higher Vocational Education Leszno'
+        home_page.switch_lang()
+        content_eng = home_page.page_content()
+        title_eng = home_page.title()
+
+        assert title_eng != title_pl
+        assert content_eng != content_pl
+        assert main_eng_link in title_eng

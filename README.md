@@ -20,9 +20,9 @@ m.in.:
 
 `pipenv install` - instalacja zależności
 
-`cd pages/` - przejście do właściwego folderu
-
 `pytest` - uruchomienie wszystkich testów
+
+`pytest -n auto ` - uruchomienie wszystkich testów + wykorzystanie więcej rdzeni
 
 **Po zakończeniu testów w tym samym folderze zostanie wygenerowany raport**
 

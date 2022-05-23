@@ -5,6 +5,9 @@ class MainPageLocators:
     """
     Locators used for the main page of 'https://pwsz.edu.pl/'
     """
+    # lang
+    switch_lang = (By.CLASS_NAME, "langs_toggler")
+    switch_lang_eng = (By.XPATH, '//*[@id="navbar"]/div[1]/div/div/div[3]/div/div/ul/li[2]/a')
     # tabs
     start_tab = (By.LINK_TEXT, "Start")
     about_tab = (By.LINK_TEXT, "O uczelni")
