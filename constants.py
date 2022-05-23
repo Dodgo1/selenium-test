@@ -1,4 +1,4 @@
 """constants for testing PWSZ"""
 
-pwsz_main_page = "https://pwsz.edu.pl"
-library_main_page = "https://biblioteka.pwsz.edu.pl"
+PWSZ_MAIN_URL = "https://pwsz.edu.pl"
+LIBRARY_MAIN_URL = "https://biblioteka.pwsz.edu.pl"
