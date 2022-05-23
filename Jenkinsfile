@@ -32,9 +32,9 @@ pipeline{
                                 """
                             } catch (err) {
                                 unstable("[ERROR]: ${STAGE_NAME} failed!"
-                                echo "Caught: ${err}"
                                 currentBuild.result = 'SUCCESS'
                                 stageResult."{STAGE_NAME}" = "UNSTABLE"
+                                sh "echo "Caught: ${err}"
                             }
                         }
                     }
