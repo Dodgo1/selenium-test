@@ -18,10 +18,8 @@ pipeline{
                 stage("try and catch"){
                     steps{
                         script{
-                            try{
-                                sh "echo "error" && exit 1"
-                            } catch (err) {
-                               catchError(message: "Some test failed", buildResult: 'UNSTABLE', stageResult: 'UNSTABLE')
+                            catchError(message: "Some test failed", buildResult: 'UNSTABLE', stageResult: 'UNSTABLE'){
+                                sh "false"
                             }
                         }
                     }
