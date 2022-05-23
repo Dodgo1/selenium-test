@@ -31,8 +31,10 @@ pipeline{
                                 pipenv run pytest --headless
                                 """
                             } catch (err) {
+                                unstable("[ERROR]: ${STAGE_NAME} failed!"
                                 echo "Caught: ${err}"
-                                currentBuild.result = 'UNSTABLE'
+                                currentBuild.result = 'SUCCESS'
+                                stageResult."{STAGE_NAME}" = "UNSTABLE"
                             }
                         }
                     }
