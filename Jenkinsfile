@@ -19,7 +19,7 @@ pipeline{
                     steps{
                         script{
                             try{
-                                sh "exit 1"
+                                sh "echo "error" && exit 1"
                             } catch (err) {
                                catchError(message: "Some test failed", buildResult: 'UNSTABLE', stageResult: 'UNSTABLE')
                             }
