@@ -25,13 +25,15 @@ pipeline{
                 }
                 stage("run test"){
                     steps{
-                        try{
-                            sh """
-                            pipenv run pytest --headless
-                            """
-                        } catch (err) {
-                            echo "Caught: ${err}"
-                            currentBuild.result = 'UNSTABLE'
+                        script{
+                            try{
+                                sh """
+                                pipenv run pytest --headless
+                                """
+                            } catch (err) {
+                                echo "Caught: ${err}"
+                                currentBuild.result = 'UNSTABLE'
+                            }
                         }
                     }
                 }
