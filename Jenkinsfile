@@ -15,25 +15,11 @@ pipeline{
                 }
             }
             stages{
-                stage("install dependencies"){
-                    steps{
-                        sh """
-                        pip install pipenv
-                        pipenv install
-                        """
-                    }
-                }
-                stage("run test"){
-                    steps{
-                        script{
-                            try{
-                                sh """
-                                pipenv run pytest --headless
-                                """
-                            } catch (err) {
-                                warnError(message:"Some tests failed")
-                            }
-                        }
+                script{
+                    try{
+                        sh "exit 1"
+                    } catch (err) {
+                       catchError(message: "Some test failed", buildResult: 'UNSTABLE', stageResult: 'UNSTABLE')
                     }
                 }
             }
