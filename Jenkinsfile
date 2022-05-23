@@ -19,7 +19,7 @@ pipeline{
                     steps{
                         script{
                             warnError(message: "Some test failed", buildResult: 'UNSTABLE', stageResult: 'UNSTABLE'){
-                                sh "false"
+                                sh "true"
                             }
                         }
                     }
