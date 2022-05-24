@@ -20,6 +20,10 @@ test-main:
   image:
     name: python:3.10-slim
   script:
+    - apt update
+    - apt-get install -y wget
+    - wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    - apt-get --assume-yes install ./google-chrome-stable_current_amd64.deb
     - pip install pipenv
     - pipenv install
     - pipenv run pytest pages/main
@@ -33,9 +37,13 @@ test-library:
   image:
     name: python:3.10-slim
   script:
+    - apt update
+    - apt-get install -y wget
+    - wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    - apt-get --assume-yes install ./google-chrome-stable_current_amd64.deb
     - pip install pipenv
     - pipenv install
-    - pipenv run pytest pages/library
+    - pipenv run pytest pages/main
   tags:
     - docker_shared
   only:
