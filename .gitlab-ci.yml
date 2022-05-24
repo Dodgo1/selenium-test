@@ -40,7 +40,7 @@ test-main:
     paths:
       - test-selenium-raport.xml
     reports:
-      junit: test-selenium-report.xml
+      junit: test-selenium-raport.xml
 
 
 test-library:
@@ -60,5 +60,5 @@ test-library:
     paths:
       - test-selenium-raport.xml
     reports:
-      junit: test-selenium-report.xml
+      junit: test-selenium-raport.xml
 
