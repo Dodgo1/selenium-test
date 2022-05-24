@@ -1,10 +1,15 @@
 stages:
   - codestyle
   - Tests
+
+default:
+  image: joyzoursky/python-chromedriver
+
 sonar:
   stage: codestyle
   image:
     name: sonarsource/sonar-scanner-cli:latest
+
   variables:
     SONAR_AUTH_TOKEN: $SONAR_AUTH_TOKEN
     SONAR_HOST_URL: https://sonar.tkhtechnology.com
@@ -15,34 +20,26 @@ sonar:
   only:
     - merge_requests
     - schedules
+
 test-main:
   stage: Tests
-  image:
-    name: python:3.10
-  script:
-    - apt update
-    - apt-get install -y wget
-    - wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    - apt-get --assume-yes install ./google-chrome-stable_current_amd64.deb
+  before_script:
     - pip install pipenv
     - pipenv install
+  script:
     - pipenv run pytest pages/main
   tags:
     - docker_shared
   only:
     - merge_requests
     - schedules
+
 test-library:
   stage: Tests
-  image:
-    name: python:3.10
-  script:
-    - apt update
-    - apt-get install -y wget
-    - wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    - apt-get --assume-yes install ./google-chrome-stable_current_amd64.deb
+  before_script:
     - pip install pipenv
     - pipenv install
+  script:
     - pipenv run pytest pages/main
   tags:
     - docker_shared
