@@ -29,7 +29,7 @@ test-main:
     - pip install pipenv
     - pipenv install
   script:
-    - pipenv run pytest --headless pages/main
+    - pipenv run pytest --headless pages/main/
   tags:
     - docker_shared
   only:
@@ -38,9 +38,9 @@ test-main:
   artifacts:
     when: always
     paths:
-      - test-selenium.xml
+      - test-selenium-raport.xml
     reports:
-      junit: test-selenium.xml
+      junit: test-selenium-report.xml
 
 
 test-library:
@@ -49,7 +49,7 @@ test-library:
     - pip install pipenv
     - pipenv install
   script:
-    - pipenv run pytest --headless pages/main
+    - pipenv run pytest --headless pages/library/
   tags:
     - docker_shared
   only:
@@ -58,7 +58,7 @@ test-library:
   artifacts:
     when: always
     paths:
-      - test-selenium.xml
+      - test-selenium-raport.xml
     reports:
-      junit: test-selenium.xml
+      junit: test-selenium-report.xml
 
