@@ -18,7 +18,7 @@ sonar:
 test-main:
   stage: Tests
   image:
-    name: python:3.10-alpine
+    name: python:3.10-slim
   script:
     - pip install pipenv
     - pipenv install
@@ -31,7 +31,7 @@ test-main:
 test-library:
   stage: Tests
   image:
-    name: python:3.10-alpine
+    name: python:3.10-slim
   script:
     - pip install pipenv
     - pipenv install
