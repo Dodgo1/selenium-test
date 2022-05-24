@@ -25,6 +25,7 @@ test-main:
   stage: Tests
   before_script:
     - pip install pipenv
+    - pip install pyenv
     - pipenv install
   script:
     - pipenv run pytest pages/main
@@ -37,6 +38,7 @@ test-main:
 test-library:
   stage: Tests
   before_script:
+    - pip install pyenv
     - pip install pipenv
     - pipenv install
   script:
