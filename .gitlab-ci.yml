@@ -5,7 +5,7 @@ stages:
 # needs an image with chrome,selenium,python3.10
 default:
   image:
-    name: joyzoursky/python-chromedriver:3.9-alpine-selenium
+    name: joyzoursky/python-chromedriver:3.9-selenium
 
 sonar:
   stage: codestyle
