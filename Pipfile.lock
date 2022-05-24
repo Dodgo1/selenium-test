@@ -1,11 +1,11 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a75d3d584edfff6e960f40d109b7c6bdf4e100e32d352cca65ea5dd0f9736ce6"
+            "sha256": "c291d68621744f8ccd44d9f1539df9f81eabfde731c34fbcc2bf3d99e0bacfe8"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.9"
+            "python_version": "3.10"
         },
         "sources": [
             {
@@ -305,7 +305,7 @@
                 "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc",
                 "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"
             ],
-            "markers": "python_version >= '3.7'",
+            "markers": "python_full_version >= '3.7.0'",
             "version": "==2.0.1"
         },
         "trio": {
@@ -313,7 +313,7 @@
                 "sha256:670a52d3115d0e879e1ac838a4eb999af32f858163e3a704fe4839de2a676070",
                 "sha256:fb2d48e4eab0dfb786a472cd514aaadc71e3445b203bc300bad93daa75d77c1a"
             ],
-            "markers": "python_version >= '3.7'",
+            "markers": "python_full_version >= '3.7.0'",
             "version": "==0.20.0"
         },
         "trio-websocket": {
@@ -338,18 +338,18 @@
         },
         "webdriver-manager": {
             "hashes": [
-                "sha256:2068a833a0092d7a90936b2fe4406539aa17fbdf758c543230b3459d04962df9",
-                "sha256:6a583e8b995298aa338dd0f17a599b10f70a7aaf5e2f73530da97e86db28c287"
+                "sha256:4a7247086b181d3a077a7f0be71b2f8e297d213ddd563ecea263dcb17e4e865f",
+                "sha256:ee09f7c5d9c61ca9cf2b78a036355f617f5dede2d68b7d2d77877d1d48df1361"
             ],
             "index": "pypi",
-            "version": "==3.6.3"
+            "version": "==3.7.0"
         },
         "wsproto": {
             "hashes": [
                 "sha256:2218cb57952d90b9fca325c0dcfb08c3bda93e8fd8070b0a17f048e2e47a521b",
                 "sha256:a2e56bfd5c7cd83c1369d83b5feccd6d37798b74872866e62616e0ecf111bda8"
             ],
-            "markers": "python_version >= '3.7'",
+            "markers": "python_full_version >= '3.7.0'",
             "version": "==1.1.0"
         }
     },
@@ -458,7 +458,7 @@
                 "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc",
                 "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"
             ],
-            "markers": "python_version >= '3.7'",
+            "markers": "python_full_version >= '3.7.0'",
             "version": "==2.0.1"
         },
         "wrapt": {

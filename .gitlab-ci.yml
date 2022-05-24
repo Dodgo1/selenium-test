@@ -1,0 +1,43 @@
+stages:
+  - codestyle
+  - Tests
+sonar:
+  stage: codestyle
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+  variables:
+    SONAR_AUTH_TOKEN: $SONAR_AUTH_TOKEN
+    SONAR_HOST_URL: https://sonar.tkhtechnology.com
+  script:
+    - sonar-scanner -Dsonar.login=${SONAR_AUTH_TOKEN}
+  tags:
+    - docker_shared
+  only:
+    - merge_requests
+    - schedules
+test-main:
+  stage: Tests
+  image:
+    name: python:3.10-alpine
+  script:
+    - pip install pipenv
+    - pipenv install
+    - pipenv run pytest pages/main
+  tags:
+    - docker_shared
+  only:
+    - merge_requests
+    - schedules
+test-library:
+  stage: Tests
+  image:
+    name: python:3.10-alpine
+  script:
+    - pip install pipenv
+    - pipenv install
+    - pipenv run pytest pages/library
+  tags:
+    - docker_shared
+  only:
+    - merge_requests
+    - schedules
