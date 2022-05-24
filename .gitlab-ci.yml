@@ -3,7 +3,7 @@ stages:
   - Tests
 
 default:
-  image: joyzoursky/python-chromedriver
+  image: nexus.tkhtechnology.com/amd64/chrome_python:latest
 
 sonar:
   stage: codestyle
