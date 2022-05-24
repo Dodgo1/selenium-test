@@ -2,8 +2,10 @@ stages:
   - codestyle
   - Tests
 
+# needs an image with chrome,selenium,python3.10
 default:
-  image: nexus.tkhtechnology.com/amd64/chrome_python:latest
+  image:
+    name: joyzoursky/python-chromedriver:3.9-alpine-selenium
 
 sonar:
   stage: codestyle
@@ -34,6 +36,13 @@ test-main:
   only:
     - merge_requests
     - schedules
+  artifacts:
+    when: always
+    paths:
+      - test-selenium.xml
+    reports:
+      junit: test-selenium.xml
+
 
 test-library:
   stage: Tests
@@ -48,3 +57,10 @@ test-library:
   only:
     - merge_requests
     - schedules
+  artifacts:
+    when: always
+    paths:
+      - test-selenium.xml
+    reports:
+      junit: test-selenium.xml
+
