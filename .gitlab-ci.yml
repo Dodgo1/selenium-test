@@ -25,6 +25,7 @@ sonar:
 
 test-main:
   stage: Tests
+  allow_failure: true
   before_script:
     - pip install pipenv
     - pipenv install
@@ -45,6 +46,7 @@ test-main:
 
 test-library:
   stage: Tests
+  allow_failure: true
   before_script:
     - pip install pipenv
     - pipenv install
