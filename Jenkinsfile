@@ -14,7 +14,19 @@ pipeline{
                     reuseNode true
                 }
             }
+            environment{
+                scannerHome = tool 'SonarQube'
+                SONARQUBE_TOKEN =
+            }
             stages{
+                stage("Sonarqube analysis"){
+                    steps{
+                    withSonarQubeEnv('SonarQube') {
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.login=${SONARQUBE_TOKEN}"
+                }
+
+                    }
+                }
                 stage("install dependencies"){
                     steps{
                         sh """
