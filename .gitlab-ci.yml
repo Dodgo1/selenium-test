@@ -1,0 +1,66 @@
+stages:
+  - codestyle
+  - Tests
+
+# needs an image with chrome,selenium,python3.10
+default:
+  image:
+    name: joyzoursky/python-chromedriver:3.9-selenium
+
+sonar:
+  stage: codestyle
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+
+  variables:
+    SONAR_AUTH_TOKEN: $SONAR_AUTH_TOKEN
+    SONAR_HOST_URL: *SECRET*
+  script:
+    - sonar-scanner -Dsonar.login=${SONAR_AUTH_TOKEN}
+  tags:
+    - docker_shared
+  only:
+    - merge_requests
+    - schedules
+
+test-main:
+  stage: Tests
+  allow_failure: true
+  before_script:
+    - pip install pipenv
+    - pipenv install
+  script:
+    - pipenv run pytest --headless pages/main/
+  tags:
+    - docker_shared
+  only:
+    - merge_requests
+    - schedules
+  artifacts:
+    when: always
+    paths:
+      - test-selenium-raport.xml
+    reports:
+      junit: test-selenium-raport.xml
+
+
+test-library:
+  stage: Tests
+  allow_failure: true
+  before_script:
+    - pip install pipenv
+    - pipenv install
+  script:
+    - pipenv run pytest --headless pages/library/
+  tags:
+    - docker_shared
+  only:
+    - merge_requests
+    - schedules
+  artifacts:
+    when: always
+    paths:
+      - test-selenium-raport.xml
+    reports:
+      junit: test-selenium-raport.xml
+
